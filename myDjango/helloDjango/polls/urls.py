@@ -4,6 +4,6 @@ from polls import views
 
 urlpatterns = [
     path('', views.index),
-    path('creat/', views.create),
+    path('create/', views.create),
     path('read/<id>/', views.read)
 ]
