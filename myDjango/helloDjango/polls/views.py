@@ -27,6 +27,7 @@ def HTMLTemplate(articleTag):
     </html>
     """
 
+@csrf_exempt
 def index(request):
     article = """
     <h2>Welcome</h2>
@@ -42,7 +43,7 @@ def create(req):
     if(req.method == "GET"):
         article="""
         <h2>Create</h2>
-        <form action = "/create/" method="post">
+        <form action = "/create/save" method="get">
             <p><input type="text" placehold="title" name="title"></p>
             <p><input type="textarea" placehold="body" name="body"></p>
             <button type="submit">제출</button>
@@ -51,14 +52,31 @@ def create(req):
         return HttpResponse(HTMLTemplate(article))
     elif(req.method == "POST"):
         global nextId
+        print(req.POST['title'], req.POST['body'])
         newTopic = {"id":nextId, "title": req.POST['title'], "body" : req.POST['body']}
         topics.append(newTopic)
         url = "/read/" + str(nextId) +"/"
         nextId+=1
-        response = HttpResponse(status=302)
-        response['Location'] = url
-        return response
+    # redirect X
+        # return HttpResponse()
+    # redirect 상태 코드 301
+        return redirect(url)
+    # redirect 상태 코드 변경
+        # response = HttpResponse(status=302)
+        # response['Location'] = url
+        # return response
 
+# Get방식으로도 redirect만 제대로 해주면 상관없음
+# def save(req):
+#         global nextId
+#         print(req.GET['title'], req.GET['body'])
+#         newTopic = {"id":nextId, "title": req.GET['title'], "body" : req.GET['body']}
+#         topics.append(newTopic)
+#         url = "/read/" + str(nextId) +"/"
+#         nextId+=1
+#         response = HttpResponse(status=302)
+#         response['Location'] = url
+#         return response
         
 def read(req, id):
     global topics
