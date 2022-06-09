@@ -1,14 +1,17 @@
 from pathlib import Path
+import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+SECRETS_PATH = os.path.join(BASE_DIR, 'helloworld/secret.json')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 
+SECRET_KEY = json.loads(open(SECRETS_PATH).read())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
