@@ -4,7 +4,7 @@ import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRETS_PATH = os.path.join(BASE_DIR, 'static_ex/secret.json')
+SECRETS_PATH = os.path.join(BASE_DIR, 'bootstrap_ex/secret.json')
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'staticapp',
+    'bootapp',
 ]
 
 MIDDLEWARE = [
@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'static_ex.urls'
+ROOT_URLCONF = 'bootstrap_ex.urls'
 
 TEMPLATES = [
     {
@@ -59,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'static_ex.wsgi.application'
+WSGI_APPLICATION = 'bootstrap_ex.wsgi.application'
 
 
 # Database
@@ -108,12 +108,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS= [
-    BASE_DIR / 'static',
-    os.path.join(BASE_DIR, 'staticapp', 'static'),
-
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
 ]
-STATIC_ROOT = os.path.join('staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
